@@ -11,7 +11,7 @@ After completing this exercise, you should be able to discuss or answer the foll
   const { property: variable } = object;
 
 - What is the syntax for `Array` destructuring?
-  const [ prperty = value] = object;
+  const [ array at the index ] = object;
 
 - How can you tell the difference between destructuring and creating `Object`/`Array` literals?
   destructuring extracts values from exisiting object or arrays and assigns them to variables
