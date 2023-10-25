@@ -1,13 +1,13 @@
 const countDown = document.querySelector('.countdown-display');
-const text = countDown.textContent;
-const myArray = [text, '3', '2', '1', '~Earth Beeeelooww Us~'];
+let startingNum = 3;
 
-function changeText() {
-  for (let i = 0; i < myArray.length; i++) {
-    setTimeout(() => {
-      countDown.textContent = myArray[i];
-    }, i * 1000);
+setInterval(() => {
+  if (startingNum === 0) {
+    countDown.textContent = '~earth beeloow us~';
+  } else if (startingNum < 0) {
+    clearInterval();
+  } else {
+    countDown.textContent = startingNum;
   }
-}
-
-changeText();
+  startingNum--;
+}, 1000);
