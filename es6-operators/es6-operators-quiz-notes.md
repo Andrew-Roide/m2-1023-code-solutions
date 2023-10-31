@@ -26,7 +26,7 @@ After completing this exercise, you should be able to discuss or answer the foll
   allows array or strings to be expanded in places where zero or more arguments or elements are expected
 
 - What data types can be spread into an array? Into an object?
-  array, strings, and maps
+  array: anything that is iterable. with object almost anything as long as theres a key value pair
 
 - How does spread syntax differ from rest syntax?
   spread uses ... before the iterable
