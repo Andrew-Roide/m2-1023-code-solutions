@@ -8,7 +8,7 @@ export default function HotButton({ color }: Props) {
   const [count, setCount] = useState(0);
 
   function handleClick() {
-    setCount(count + 3);
+    setCount(count + 1);
   }
 
   if (count <= 3) {
