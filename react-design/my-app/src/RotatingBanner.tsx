@@ -8,18 +8,10 @@ function Banner({ items }) {
   );
 }
 
-function NextButton() {
+function CycleButton({ direction, onClick }) {
   return (
     <div className="cycleButton">
-      <button>Next</button>
-    </div>
-  );
-}
-
-function PrevButton() {
-  return (
-    <div className="cycleButton">
-      <button>Prev</button>
+      <button onClick={onClick}>{direction}</button>
     </div>
   );
 }
@@ -45,18 +37,26 @@ function Indicators({ count, currentIndex, onIndicatorClick }) {
 export default function RotatingBanner({ items }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const handleNextClick = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+  };
+
+  const handlePrevClick = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + items.length) % items.length
+    );
+  };
+
   return (
-    <>
-      <div className="container">
-        <Banner items={items[currentIndex]} />
-        <PrevButton />
-        <Indicators
-          count={items.length}
-          currentIndex={currentIndex}
-          onIndicatorClick={setCurrentIndex}
-        />
-        <NextButton />
-      </div>
-    </>
+    <div className="container">
+      <Banner items={items[currentIndex]} />
+      <CycleButton direction="Prev" onClick={handlePrevClick} />
+      <Indicators
+        count={items.length}
+        currentIndex={currentIndex}
+        onIndicatorClick={setCurrentIndex}
+      />
+      <CycleButton direction="Next" onClick={handleNextClick} />
+    </div>
   );
 }
