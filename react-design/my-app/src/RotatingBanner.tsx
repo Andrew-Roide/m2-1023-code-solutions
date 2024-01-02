@@ -1,28 +1,9 @@
+import { useState } from 'react';
+
 function Banner({ items }) {
   return (
     <div>
       <h1 className="banner">{items}</h1>
-    </div>
-  );
-}
-
-function PrevButton() {
-  return (
-    <div className="cycleButton">
-      <button>Prev</button>
-    </div>
-  );
-}
-
-function Indicators() {
-  return (
-    <div className="indicators">
-      <button>0</button>
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>4</button>
-      <button>5</button>
     </div>
   );
 }
@@ -35,13 +16,45 @@ function NextButton() {
   );
 }
 
-export default function RotatingBanner(/*{ items }*/) {
+function PrevButton() {
+  return (
+    <div className="cycleButton">
+      <button>Prev</button>
+    </div>
+  );
+}
+
+function Indicators({ count, currentIndex, onIndicatorClick }) {
+  const indicators = [];
+
+  for (let i = 0; i < count; i++) {
+    const isActive = currentIndex === i;
+
+    indicators.push(
+      <button
+        key={i}
+        onClick={() => onIndicatorClick(i)}
+        className={isActive ? 'active' : ''}>
+        {i}
+      </button>
+    );
+  }
+  return <div className="indicators">{indicators}</div>;
+}
+
+export default function RotatingBanner({ items }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
     <>
       <div className="container">
-        <Banner /*items={items}*/ />
+        <Banner items={items[currentIndex]} />
         <PrevButton />
-        <Indicators />
+        <Indicators
+          count={items.length}
+          currentIndex={currentIndex}
+          onIndicatorClick={setCurrentIndex}
+        />
         <NextButton />
       </div>
     </>

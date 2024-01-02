@@ -80,3 +80,7 @@ button:focus-visible {
   display: flex;
   justify-content: center;
 }
+
+.active {
+  background-color: lightblue;
+}
